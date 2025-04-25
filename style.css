@@ -335,14 +335,14 @@ footer {
     padding: 30px 20px;
     display: flex;
     flex-wrap: wrap;
-    border: 1px solid #000;
+    /* border: 1px solid #000; */
 }
 
 .footer-company, .footer-sns {
     flex: 1;
     padding: 15px;
     min-width: 200px;
-    border: 1px solid #000;
+    /* border: 1px solid #000; */
     display:flex;
 }
 
@@ -362,7 +362,7 @@ footer {
     flex: 1;
     padding: 15px;
     min-width: 200px;
-    border: 1px solid #000;
+    /* border: 1px solid #000; */
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -393,7 +393,7 @@ footer {
 .footer-contents {
     flex: 2;
     padding: 15px;
-    border: 1px solid #000;
+    /* border: 1px solid #000; */
     min-width: 400px;
     display: flex;
     flex-direction: column;
