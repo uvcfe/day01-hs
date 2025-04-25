@@ -12,27 +12,27 @@ header {
 }
 
 /* 왼쪽 로고 영역 */
-.header-left {
+.header-logo {
     flex: 1;
 }
 
-.header-left a {
+.header-logo a {
     display: inline-block;
 }
 
-.header-left img {
+.header-logo img {
     height: 24px;
     width: auto;
 }
 
 /* 중앙 네비게이션 영역 */
-.header-center {
+.header-navigation {
     flex: 3;
     display: flex;
     justify-content: center;
 }
 
-.header-center nav {
+.header-navigation nav {
     display: flex;
     gap: 30px;
 }
@@ -82,14 +82,14 @@ header {
 }
 
 /* 오른쪽 버튼 영역 */
-.header-right {
+.header-login {
     flex: 1;
     display: flex;
     justify-content: flex-end;
     gap: 10px;
 }
 
-.header-right button {
+.header-login button {
     padding: 8px 16px;
     border-radius: 6px;
     font-size: 14px;
@@ -195,4 +195,137 @@ header {
     width: 100%;
     height: 2px;
     background-color: #333;
+}
+
+.service-tabs-01, .service-tabs-03, .service-tabs-04 {
+    display: flex;
+    width: 100%;
+    height: 300px;
+}
+
+.service-tabs-01-introduce, .service-tabs-01-image, .service-tabs-03-introduce, .service-tabs-03-image, .service-tabs-04-introduce, .service-tabs-04-image {
+    flex: 1;
+    position: relative;
+    border: 1px solid #ccc;
+}
+
+.service-tabs-01-introduce, .service-tabs-03-image, .service-tabs-04-introduce {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.service-tabs-01-image, .service-tabs-03-introduce, .service-tabs-04-image {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.service-tabs-02 {
+    display: flex;
+    width: 100%;
+    height: 150px;
+    margin: 30px;
+}
+
+.service-tabs-02-mention, .service-tabs-02-reply, .service-tabs-02-notice {
+    flex: 1;
+    min-width: 300px;
+    height: 150px;
+    border: 1px solid #ddd;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.service-tabs-02-mention img {
+    max-width: 80%;
+    max-height: 80%;
+    object-fit: contain;
+}
+
+.service-tabs-02-reply img {
+    max-width: 80%;
+    max-height: 80%;
+    object-fit: contain;
+}
+
+.service-tabs-02-notice img {
+    max-width: 80%;
+    max-height: 80%;
+    object-fit: contain;
+}
+
+.service-tabs-03 {
+    background-color: #f7f7f7;
+}
+
+.service-tabs-05-outer {
+    width: 100%;
+    border: 2px solid #333;
+    padding: 15px;
+}
+
+.service-tabs-05-inner-01 {
+    width: 100%;
+    height: 200px;
+    margin-bottom: 15px;
+    border: 1px solid #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.service-tabs-05-inner-02 {
+    width: 100%;
+    border: 1px solid #000;
+    padding: 15px;
+    display: flex;
+}
+
+.service-tabs-05-inner-02-todolist, .service-tabs-05-inner-02-settings {
+    flex: 1;
+    height: 150px;
+    border: 1px solid #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer {
+    width: 100%;
+    padding: 30px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid #000;
+}
+
+.footer-company, .footer-sns {
+    flex: 1;
+    padding: 15px;
+    min-width: 200px;
+    border: 1px solid #000;
+}
+
+.footer-contents {
+    flex: 2;
+    padding: 15px;
+    border: 1px solid #000;
+    min-width: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-contents-list, .footer-contents-copyright {
+    padding: 15px;
+}
+
+.footer-contents-list {
+    margin-bottom: 15px;
+    flex: 1;
+}
+
+.footer-contents-copyright {
+    flex: 1;
+    color: lightgray;
 }
