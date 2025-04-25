@@ -1,0 +1,198 @@
+/* Header 전체 스타일 */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: #fff;
+    border-bottom: 1px solid #f1f1f1;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+/* 왼쪽 로고 영역 */
+.header-left {
+    flex: 1;
+}
+
+.header-left a {
+    display: inline-block;
+}
+
+.header-left img {
+    height: 24px;
+    width: auto;
+}
+
+/* 중앙 네비게이션 영역 */
+.header-center {
+    flex: 3;
+    display: flex;
+    justify-content: center;
+}
+
+.header-center nav {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-item {
+    position: relative;
+}
+
+.nav-item a {
+    color: #333;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 5px 0;
+    transition: color 0.3s ease;
+}
+
+.nav-item a:hover {
+    color: #000;
+}
+
+.nav-item a:hover:after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #000;
+    transition: width 0.3s ease;
+}
+
+/* 현재 활성화된 메뉴 항목 */
+.nav-item a.active {
+    color: #000;
+    font-weight: 600;
+}
+
+.nav-item a.active:after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #000;
+}
+
+/* 오른쪽 버튼 영역 */
+.header-right {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.header-right button {
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-inquiry {
+    background-color: transparent;
+    border: 1px solid #ddd;
+    color: #333;
+}
+
+.btn-inquiry:hover {
+    background-color: #f7f7f7;
+}
+
+.btn-login {
+    background-color: #333;
+    border: none;
+    color: white;
+}
+
+.btn-login:hover {
+    background-color: #222;
+}
+
+.hero-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 80px 0;
+    text-align: center;
+}
+
+.hero-content h1 {
+    font-size: 40px;
+    font-weight: 700;
+    margin-bottom: 40px;
+    line-height: 1.3;
+}
+
+.hero-image img {
+    max-width: 100%;
+    border-radius: 12px;
+}
+
+/* 서비스 탭 메뉴 */
+.service-tabs {
+    margin-bottom: 80px;
+}
+
+.tab-list {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-bottom: 1px solid #eee;
+}
+
+.tab-item {
+    margin: 0 15px;
+    padding: 15px 0;
+}
+
+.tab-item a {
+    text-decoration: none;
+    color: #666;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 5px 0;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.tab-item a:hover {
+    color: #333;
+}
+
+.tab-item a:hover:after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #333;
+    transition: width 0.3s ease;
+}
+
+.tab-item.active a {
+    color: #333;
+    font-weight: 600;
+}
+
+.tab-item.active a:after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #333;
+}

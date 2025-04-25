@@ -1,857 +1,124 @@
 <!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NAVER</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Malgun Gothic", "맑은 고딕", sans-serif;
-        }
-        
-        body {
-            background-color: #f5f6f7;
-        }
-        
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-        
-        ul, li {
-            list-style: none;
-        }
-        
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-            background-color: white;
-        }
-        
-        .header-left {
-            display: flex;
-            align-items: center;
-        }
-        
-        .menu-btn {
-            margin-right: 10px;
-            cursor: pointer;
-        }
-        
-        .naver-logo {
-            width: 30px;
-            height: 30px;
-        }
-        
-        .header-right {
-            display: flex;
-            align-items: center;
-        }
-        
-        .header-icon {
-            margin-left: 15px;
-            cursor: pointer;
-        }
-        
-        .search-container {
-            background-color: white;
-            padding: 10px 20px;
-            display: flex;
-            justify-content: center;
-        }
-        
-        .search-box {
-            position: relative;
-            width: 90%;
-            max-width: 600px;
-        }
-        
-        .search-input {
-            width: 100%;
-            padding: 10px 40px 10px 15px;
-            border-radius: 20px;
-            border: 2px solid #19ce60;
-            font-size: 16px;
-            outline: none;
-        }
-        
-        .search-btn {
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: #19ce60;
-            font-size: 20px;
-        }
-        
-        .quick-menu {
-            display: flex;
-            justify-content: space-around;
-            padding: 15px 0;
-            background-color: white;
-            border-bottom: 1px solid #e6e6e6;
-            text-align: center;
-            font-size: 12px;
-        }
-        
-        .quick-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 10%;
-        }
-        
-        .quick-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: #19ce60;
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 5px;
-            font-size: 20px;
-        }
-        
-        .banner {
-            padding: 20px;
-            background-color: white;
-            margin: 10px 0;
-            display: flex;
-            justify-content: space-between;
-        }
-        
-        .banner-image {
-            display: flex;
-            gap: 5px;
-        }
-        
-        .magazine {
-            width: 50px;
-            height: 70px;
-            border-radius: 5px;
-        }
-        
-        .banner-text {
-            text-align: center;
-        }
-        
-        .news-section {
-            background-color: white;
-            padding: 15px;
-            margin-bottom: 10px;
-        }
-        
-        .section-title {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 15px;
-            font-size: 14px;
-        }
-        
-        .news-tabs {
-            display: flex;
-            border-bottom: 1px solid #e6e6e6;
-            margin-bottom: 15px;
-        }
-        
-        .news-tab {
-            padding: 8px 15px;
-            cursor: pointer;
-            position: relative;
-            font-size: 14px;
-        }
-        
-        .news-tab.active {
-            font-weight: bold;
-            color: #19ce60;
-        }
-        
-        .news-tab.active::after {
-            content: '';
-            position: absolute;
-            bottom: -1px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background-color: #19ce60;
-        }
-        
-        .news-provider-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-        
-        .news-provider {
-            text-align: center;
-            font-size: 12px;
-        }
-        
-        .provider-logo {
-            width: 100%;
-            height: auto;
-            max-height: 20px;
-            object-fit: contain;
-            margin-bottom: 5px;
-        }
-        
-        .shopping-section {
-            background-color: white;
-            padding: 15px;
-            margin-bottom: 10px;
-        }
-        
-        .shopping-tabs {
-            display: flex;
-            margin-bottom: 15px;
-            font-size: 14px;
-        }
-        
-        .shopping-tab {
-            margin-right: 15px;
-            cursor: pointer;
-        }
-        
-        .shopping-tab.active {
-            font-weight: bold;
-        }
-        
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-        }
-        
-        .product {
-            text-align: center;
-        }
-        
-        .product-image {
-            width: 100%;
-            aspect-ratio: 1;
-            object-fit: cover;
-            border-radius: 5px;
-            margin-bottom: 5px;
-        }
-        
-        .product-title {
-            font-size: 12px;
-            margin-bottom: 5px;
-        }
-        
-        .product-price {
-            font-weight: bold;
-            font-size: 12px;
-            color: #222;
-        }
-        
-        .bottom-menu {
-            display: flex;
-            justify-content: space-around;
-            background-color: #f9f9f9;
-            padding: 10px 0;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            border-top: 1px solid #e6e6e6;
-        }
-        
-        .bottom-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            font-size: 10px;
-        }
-        
-        .bottom-icon {
-            font-size: 20px;
-            margin-bottom: 3px;
-            color: #666;
-        }
-        
-        .weather-card {
-            background-color: white;
-            border-radius: 10px;
-            padding: 15px;
-            margin: 10px;
-        }
-        
-        .weather-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .weather-main {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        .weather-icon {
-            width: 60px;
-            height: 60px;
-            background-color: #ffd200;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 5px;
-            font-size: 30px;
-            color: white;
-        }
-        
-        .weather-temp {
-            font-size: 32px;
-            font-weight: bold;
-        }
-        
-        .weather-location {
-            font-size: 14px;
-            color: #666;
-        }
-        
-        .weather-forecast {
-            display: flex;
-            margin-top: 15px;
-            justify-content: space-between;
-        }
-        
-        .forecast-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            font-size: 12px;
-        }
-        
-        .forecast-icon {
-            width: 30px;
-            height: 30px;
-            background-color: #ffd200;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 5px;
-            font-size: 15px;
-            color: white;
-        }
-        
-        .video-section {
-            background-color: white;
-            padding: 15px;
-            margin-bottom: 10px;
-        }
-        
-        .game-section {
-            background-color: white;
-            padding: 15px;
-            margin-bottom: 10px;
-        }
-        
-        .game-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-        }
-        
-        .game-card {
-            border-radius: 8px;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .game-thumbnail {
-            width: 100%;
-            aspect-ratio: 16/9;
-            object-fit: cover;
-        }
-        
-        .game-title {
-            font-size: 12px;
-            padding: 5px;
-            background-color: rgba(0, 0, 0, 0.6);
-            color: white;
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-        }
-        
-        .footer {
-            padding: 20px;
-            background-color: #f9f9f9;
-            font-size: 12px;
-            color: #666;
-            text-align: center;
-            margin-bottom: 60px;
-        }
-        
-        .footer-menu {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 10px;
-        }
-        
-        .footer-item {
-            margin: 0 10px;
-        }
-        
-        .stock-section {
-            background-color: white;
-            padding: 15px;
-            margin: 10px;
-            border-radius: 10px;
-        }
-        
-        .stock-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-        }
-        
-        .stock-value {
-            font-size: 24px;
-            font-weight: bold;
-        }
-        
-        .stock-change {
-            color: red;
-            font-size: 12px;
-        }
-        
-        .calendar-section {
-            background-color: white;
-            padding: 15px;
-            margin: 10px;
-            border-radius: 10px;
-        }
-        
-        .calendar-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-        }
-        
-        .calendar-date {
-            font-size: 24px;
-            font-weight: bold;
-        }
-        
-        .calendar-grid {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 5px;
-            text-align: center;
-        }
-        
-        .calendar-day {
-            background-color: #f9f9f9;
-            padding: 5px;
-            border-radius: 5px;
-            font-size: 12px;
-        }
-        
-        .calendar-day.today {
-            background-color: #19ce60;
-            color: white;
-            font-weight: bold;
-        }
-        
-        .right-section {
-            float: right;
-            width: 30%;
-        }
-        
-        .main-section {
-            float: left;
-            width: 70%;
-        }
-        
-        .clear {
-            clear: both;
-        }
-        
-        .more-btn {
-            color: #666;
-            font-size: 12px;
-        }
-    </style>
-</head>
-<body>
-    <div class="header">
-        <div class="header-left">
-            <div class="menu-btn">☰</div>
-            <img src="/api/placeholder/40/40" alt="NAVER" class="naver-logo">
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <header>
+      <div class="header-left">
+        <a href="index.html">
+          <img src="" alt="로고" />
+        </a>
+      </div>
+      <div class="header-center">
+        <nav>
+          <div class="nav-item">
+            <a href="service.html">서비스소개</a>
+          </div>
+          <div class="nav-item">
+            <a href="download.html">다운로드</a>
+          </div>
+          <div class="nav-item">
+            <a href="pricing.html">요금안내</a>
+          </div>
+          <div class="nav-item">
+            <a href="news.html">새소식</a>
+          </div>
+        </nav>
+      </div>
+      <div class="header-right">
+        <button class="btn-inquiry">문의하기</button>
+        <button class="btn-login">로그인</button>
+      </div>
+    </header>
+    <main>
+      <section class="hero-section">
+        <div class="hero-image">
+          <img src="hero-image.jpg" alt="대화는 편하게, 업무는 빠르게">
         </div>
-        <div class="header-right">
-            <div class="header-icon">💬</div>
-            <div class="header-icon">1</div>
-            <div class="header-icon">🛒</div>
+      </section>
+      <section class="service-tabs">
+        <ul class="tab-list">
+            <li class="tab-item active"><a href="#chat">채팅</a></li>
+            <li class="tab-item"><a href="#task">할일관리</a></li>
+            <li class="tab-item"><a href="#video">화상회의</a></li>
+            <li class="tab-item"><a href="#search">통합검색</a></li>
+            <li class="tab-item"><a href="#ai">AI어시스턴스</a></li>
+            <li class="tab-item"><a href="#company">기업별설정</a></li>
+            <li class="tab-item"><a href="#apps">APPS</a></li>
+            <li class="tab-item"><a href="#attendance">근태관리</a></li>
+            <li class="tab-item"><a href="#approval">전자결재</a></li>
+        </ul>
+      </section>
+      <section class="service-tabs-01">
+        <div class="service-tabs-01-left">
+
         </div>
-    </div>
-    
-    <div class="search-container">
-        <div class="search-box">
-            <input type="text" class="search-input" placeholder="검색어를 입력해 주세요">
-            <button class="search-btn">🔍</button>
+        <div class="service-tabs-01-right">
+
         </div>
-    </div>
-    
-    <div class="quick-menu">
-        <div class="quick-item">
-            <div class="quick-icon">🏠</div>
-            <span>메일</span>
+      </section>
+      <section class="service-tabs-02">
+        <div class="service-tabs-02-left">
+
         </div>
-        <div class="quick-item">
-            <div class="quick-icon">☕</div>
-            <span>카페</span>
+        <div class="service-tabs-02-center">
+
         </div>
-        <div class="quick-item">
-            <div class="quick-icon">📝</div>
-            <span>블로그</span>
+        <div class="service-tabs-02-right">
+
         </div>
-        <div class="quick-item">
-            <div class="quick-icon">💰</div>
-            <span>쇼핑</span>
+      </section>
+      <section class="service-tabs-03">
+        <div class="service-tabs-03-left">
+
         </div>
-        <div class="quick-item">
-            <div class="quick-icon">📰</div>
-            <span>뉴스</span>
+        <div class="service-tabs-03-right">
+
         </div>
-        <div class="quick-item">
-            <div class="quick-icon">📊</div>
-            <span>증권</span>
+      </section>
+      <section class="service-tabs-04">
+        <div class="service-tabs-04-left">
+
         </div>
-        <div class="quick-item">
-            <div class="quick-icon">🏢</div>
-            <span>부동산</span>
+        <div class="service-tabs-04-right">
+
         </div>
-        <div class="quick-item">
-            <div class="quick-icon">🚗</div>
-            <span>지도</span>
-        </div>
-        <div class="quick-item">
-            <div class="quick-icon">📚</div>
-            <span>웹툰</span>
-        </div>
-        <div class="quick-item">
-            <div class="quick-icon">📸</div>
-            <span>사진첩</span>
-        </div>
-    </div>
-    
-    <div class="main-section">
-        <div class="banner">
-            <div class="banner-image">
-                <img src="/api/placeholder/50/70" alt="매거진" class="magazine">
-                <img src="/api/placeholder/50/70" alt="매거진" class="magazine">
-                <img src="/api/placeholder/50/70" alt="매거진" class="magazine">
-                <img src="/api/placeholder/50/70" alt="매거진" class="magazine">
-                <img src="/api/placeholder/50/70" alt="매거진" class="magazine">
+      </section>
+      <section class="service-tabs-05">
+        <div>
+          <div>
+            <h3>같이 쓰면 더 유용한 기능</h3>
+          </div>
+          <div>
+            <div>
+              <a href="">
+                <img src="" alt="할 일 관리"></img>
+              </a>
             </div>
-            <div class="banner-text">
-                <h3>네이버</h3>
-                <p>우리가 나눈 이야기엔 꽃 창습니다.</p>
-                <p>네이버 블로그</p>
+            <div>
+              <a href="">
+                <img src="" alt="기업별 설정"></img>
+              </a>
             </div>
+          </div>
         </div>
-        
-        <div class="news-section">
-            <div class="section-title">
-                <h3>뉴스스탠드</h3>
-                <span class="more-btn">더보기 ></span>
-            </div>
-            
-            <div class="news-tabs">
-                <div class="news-tab active">언론사편집</div>
-                <div class="news-tab">엔터</div>
-                <div class="news-tab">스포츠</div>
-                <div class="news-tab">경제</div>
-                <div class="news-tab">사회/정치</div>
-            </div>
-            
-            <div class="news-provider-grid">
-                <div class="news-provider">
-                    <img src="/api/placeholder/80/20" alt="언론사" class="provider-logo">
-                </div>
-                <div class="news-provider">
-                    <img src="/api/placeholder/80/20" alt="언론사" class="provider-logo">
-                </div>
-                <div class="news-provider">
-                    <img src="/api/placeholder/80/20" alt="언론사" class="provider-logo">
-                </div>
-                <div class="news-provider">
-                    <img src="/api/placeholder/80/20" alt="언론사" class="provider-logo">
-                </div>
-                <div class="news-provider">
-                    <img src="/api/placeholder/80/20" alt="언론사" class="provider-logo">
-                </div>
-                <div class="news-provider">
-                    <img src="/api/placeholder/80/20" alt="언론사" class="provider-logo">
-                </div>
-                <div class="news-provider">
-                    <img src="/api/placeholder/80/20" alt="언론사" class="provider-logo">
-                </div>
-                <div class="news-provider">
-                    <img src="/api/placeholder/80/20" alt="언론사" class="provider-logo">
-                </div>
-                <div class="news-provider">
-                    <img src="/api/placeholder/80/20" alt="언론사" class="provider-logo">
-                </div>
-                <div class="news-provider">
-                    <img src="/api/placeholder/80/20" alt="언론사" class="provider-logo">
-                </div>
-                <div class="news-provider">
-                    <img src="/api/placeholder/80/20" alt="언론사" class="provider-logo">
-                </div>
-                <div class="news-provider">
-                    <img src="/api/placeholder/80/20" alt="언론사" class="provider-logo">
-                </div>
-                <div class="news-provider">
-                    <img src="/api/placeholder/80/20" alt="언론사" class="provider-logo">
-                </div>
-                <div class="news-provider">
-                    <img src="/api/placeholder/80/20" alt="언론사" class="provider-logo">
-                </div>
-                <div class="news-provider">
-                    <img src="/api/placeholder/80/20" alt="언론사" class="provider-logo">
-                </div>
-            </div>
-        </div>
-        
-        <div class="shopping-section">
-            <div class="section-title">
-                <h3>쇼핑</h3>
-                <span class="more-btn">더보기 ></span>
-            </div>
-            
-            <div class="shopping-tabs">
-                <div class="shopping-tab active">쇼핑</div>
-                <div class="shopping-tab">몰딩</div>
-                <div class="shopping-tab">패션뷰</div>
-                <div class="shopping-tab">쇼핑라이브</div>
-            </div>
-            
-            <div class="product-grid">
-                <div class="product">
-                    <img src="/api/placeholder/100/100" alt="제품" class="product-image">
-                    <div class="product-title">로봇청소기</div>
-                    <div class="product-price">199,000원</div>
-                </div>
-                <div class="product">
-                    <img src="/api/placeholder/100/100" alt="제품" class="product-image">
-                    <div class="product-title">GS SHOP 티셔츠</div>
-                    <div class="product-price">39,000원</div>
-                </div>
-                <div class="product">
-                    <img src="/api/placeholder/100/100" alt="제품" class="product-image">
-                    <div class="product-title">ZIOZIA 셔츠</div>
-                    <div class="product-price">69,000원</div>
-                </div>
-                <div class="product">
-                    <img src="/api/placeholder/100/100" alt="제품" class="product-image">
-                    <div class="product-title">화이트 스니커즈</div>
-                    <div class="product-price">89,000원</div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="game-section">
-            <div class="section-title">
-                <h3>게임</h3>
-                <span class="more-btn">더보기 ></span>
-            </div>
-            
-            <div class="game-grid">
-                <div class="game-card">
-                    <img src="/api/placeholder/200/120" alt="게임" class="game-thumbnail">
-                    <div class="game-title">메이플 업데이트 소식</div>
-                </div>
-                <div class="game-card">
-                    <img src="/api/placeholder/200/120" alt="게임" class="game-thumbnail">
-                    <div class="game-title">롤 챔피언스 대회</div>
-                </div>
-                <div class="game-card">
-                    <img src="/api/placeholder/200/120" alt="게임" class="game-thumbnail">
-                    <div class="game-title">스톡스 8888 투자 업데이트</div>
-                </div>
-                <div class="game-card">
-                    <img src="/api/placeholder/200/120" alt="게임" class="game-thumbnail">
-                    <div class="game-title">던전 앤 파이터 업데이트</div>
-                </div>
-                <div class="game-card">
-                    <img src="/api/placeholder/200/120" alt="게임" class="game-thumbnail">
-                    <div class="game-title">유비소프트 게임 출시</div>
-                </div>
-                <div class="game-card">
-                    <img src="/api/placeholder/200/120" alt="게임" class="game-thumbnail">
-                    <div class="game-title">넷마블 최신 소식</div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="right-section">
-        <div class="login-box" style="background-color: white; padding: 15px; margin: 10px; border-radius: 10px; text-align: center;">
-            <div style="margin-bottom: 10px;">
-                <span style="font-size: 14px; color: #333;">NAVER를 더 안전하고 편리하게 이용하세요</span>
-            </div>
-            <button style="width: 100%; padding: 10px; background-color: #19ce60; color: white; border: none; border-radius: 5px; font-weight: bold; margin-bottom: 15px;">로그인</button>
-            <div style="display: flex; justify-content: space-between; font-size: 12px; color: #666;">
-                <span>아이디 찾기</span>
-                <span>|</span>
-                <span>비밀번호 찾기</span>
-                <span>|</span>
-                <span>회원가입</span>
-            </div>
-        </div>
-        
-        <div class="weather-card">
-            <div class="weather-content">
-                <div class="weather-main">
-                    <div class="weather-icon">☀️</div>
-                    <div class="weather-temp">17°</div>
-                    <div class="weather-location">서울</div>
-                </div>
-                <div style="text-align: right;">
-                    <div>23° 23° 22°</div>
-                    <div style="margin-top: 10px;">
-                        <span>18° 21°</span>
-                    </div>
-                    <div style="margin-top: 10px;">
-                        <span>13° 24°</span>
-                    </div>
-                </div>
-            </div>
-            <div class="weather-forecast">
-                <div class="forecast-item">
-                    <span>오전</span>
-                    <div class="forecast-icon">☀️</div>
-                </div>
-                <div class="forecast-item">
-                    <span>10시</span>
-                    <div class="forecast-icon">☀️</div>
-                </div>
-                <div class="forecast-item">
-                    <span>12</span>
-                    <div class="forecast-icon">☁️</div>
-                </div>
-                <div class="forecast-item">
-                    <span>14</span>
-                    <div class="forecast-icon">☀️</div>
-                </div>
-                <div class="forecast-item">
-                    <span>16</span>
-                    <div class="forecast-icon">☀️</div>
-                </div>
-                <div class="forecast-item">
-                    <span>18</span>
-                    <div class="forecast-icon">☀️</div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="stock-section">
-            <div class="stock-header">
-                <h3>코스닥</h3>
-                <span class="more-btn">더보기 ></span>
-            </div>
-            <div class="stock-value">721.60</div>
-            <div class="stock-change">▼3.46 -0.77%</div>
-            <img src="/api/placeholder/300/50" alt="주식 차트" style="width: 100%; margin-top: 10px;">
-        </div>
-        
-        <div class="calendar-section">
-            <div class="calendar-header">
-                <div class="calendar-date">4.23</div>
-                <span>오늘의 한정판</span>
-            </div>
-            <div class="calendar-grid">
-                <div class="calendar-day">일</div>
-                <div class="calendar-day">월</div>
-                <div class="calendar-day">화</div>
-                <div class="calendar-day">수</div>
-                <div class="calendar-day">목</div>
-                <div class="calendar-day">금</div>
-                <div class="calendar-day">토</div>
-                <div class="calendar-day">9</div>
-                <div class="calendar-day">10</div>
-                <div class="calendar-day">11</div>
-                <div class="calendar-day">12</div>
-                <div class="calendar-day">13</div>
-                <div class="calendar-day">14</div>
-                <div class="calendar-day">15</div>
-                <div class="calendar-day">16</div>
-                <div class="calendar-day">17</div>
-                <div class="calendar-day">18</div>
-                <div class="calendar-day">19</div>
-                <div class="calendar-day">20</div>
-                <div class="calendar-day">21</div>
-                <div class="calendar-day">22</div>
-                <div class="calendar-day today">23</div>
-                <div class="calendar-day">24</div>
-                <div class="calendar-day">25</div>
-                <div class="calendar-day">26</div>
-                <div class="calendar-day">27</div>
-                <div class="calendar-day">28</div>
-                <div class="calendar-day">29</div>
-                <div class="calendar-day">30</div>
-                <div class="calendar-day">1</div>
-                <div class="calendar-day">2</div>
-                <div class="calendar-day">3</div>
-                <div class="calendar-day">4</div>
-                <div class="calendar-day">5</div>
-                <div class="calendar-day">6</div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="clear"></div>
-    
-    <div class="footer">
-        <div class="footer-menu">
-            <div class="footer-item">공지사항</div>
-            <div class="footer-item">서비스 약관</div>
-            <div class="footer-item">개인정보처리방침</div>
-            <div class="footer-item">책임의 한계</div>
-            <div class="footer-item">고객센터</div>
-        </div>
-        <div>© NAVER Corp. All Rights Reserved.</div>
-    </div>
-    
-    <div class="bottom-menu">
-        <div class="bottom-item">
-            <div class="bottom-icon">🏠</div>
-            <span>홈</span>
-        </div>
-        <div class="bottom-item">
-            <div class="bottom-icon">📰</div>
-            <span>뉴스</span>
-        </div>
-        <div class="bottom-item">
-            <div class="bottom-icon">💬</div>
-            <span>채팅</span>
-        </div>
-        <div class="bottom-item">
-            <div class="bottom-icon">🛒</div>
-            <span>쇼핑</span>
-        </div>
-        <div class="bottom-item">
-            <div class="bottom-icon">⋯</div>
-            <span>더보기</span>
-        </div>
-    </div>
-</body>
+      </section>
+    </main>
+    <footer>
+      <div>
+
+      </div>
+      <div>
+        <div></div>
+        <div></div>
+      </div>
+      <div>
+
+      </div>
+    </footer>
+  </body>
 </html>
